@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PT first</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../Background/background.css">
+  <style>
+
+    .login-link {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 16px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s ease;
+    }
+
+    .login-link i {
+      margin-right: 8px; 
+    }
+
+    .login-link:hover {
+      color: #0d6efd; 
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="galaxyCanvas"></canvas>
+
+  <a href="login.html" class="login-link">
+    <i class="bi bi-person-circle"></i> Login
+  </a>
+
+  <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+    <div class="mx-auto max-w-3xl text-center">
+      <h1
+        class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl"
+      >TalentaHub
+        <span class="sm:block"> By PT. Karya Muda Talenta  </span>
+      </h1>
+
+      <p class="mx-auto mt-4 max-w-xl sm:text-xl/relaxed" style="color: #fff;">
+          Lanjutkan halaman, 
+      </p>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a
+          class="block w-full rounded border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-white focus:outline-none focus:ring active:text-opacity-75 sm:w-auto"
+          href="../html/h.html"
+        >
+          Get Started
+        </a>
+
+        <a
+          class="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
+          href="../html/about.html"
+        >
+          Learn More
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../Background/background 1.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</body>
+</html>

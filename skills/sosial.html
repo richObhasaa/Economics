@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+/* Reset browser styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Canvas for the starry background */
+#starCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Prevent canvas from blocking interaction */
+    background: black; /* Fallback background color */
+}
+
+/* Main content styling */
+.content {
+    color: white;
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8); /* Slight transparency for better readability */
+}
+
+        footer {
+      background-color: #2a2b2c;
+      padding: 40px 20px;
+    }
+    footer a {
+      text-decoration: none;
+      color: #FFF;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .footer-bottom {
+      text-align: center;
+      font-size: 14px;
+      color: #a1cff8;
+      margin-top: 20px;
+    }
+
+    .img-categori {
+      width: 80px; 
+      height: 80px;
+      object-fit: contain;
+    }
+
+    
+    </style>
+</head>
+<body>
+  <canvas id="starCanvas"></canvas>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+              <img src="../images/economic.png" alt="" width="50" height="50" class="me-2">
+              <strong style="color: #355d7b"> Talenta</strong><strong class="text-warning">Hub</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto">
+                    <input class="form-control me-2" type="search" placeholder="Cari Barang Anda!" aria-label="Cari">
+                    <button class="btn btn-light" type="submit">Search</button>
+                </form>
+                <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"> About</a>
+                </li>
+              <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="../html/h.html">Homepage</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="../html/e-sertif.html">E-Sertif</a>
+              </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="../html/login.html">Login</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+ 
+    <div class="container mt-5">
+        <h3 class="text-center mb-4" style="color: #FFF;">Sosial</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="eventContainer">
+        </div>
+
+        <!-- Hidden Descriptions -->
+        <div id="descriptions" class="d-none" >
+            <div id="desc-0">Complate Details event 1.</div>
+            <div id="desc-1">Complate Details event 2.</div>
+            <div id="desc-2">Complate Details event 3.</div>
+            <div id="desc-3">Complate Details event 4.</div>
+            <div id="desc-4">Complate Details event 5.</div>
+            <div id="desc-5">Complate Details event 6.</div>
+        </div>
+    </div>
+
+    <!-- Modal Details -->
+    <div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" >
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalLabel">Event Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" src="" class="img-fluid mb-3" alt="Event Image">
+                    <p id="modalDescription">Event Description</p>
+                    <p class="text-danger fw-bold" id="modalPrice">Price</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</br>
+</br>
+
+    <footer>
+        <div id="footer-container" class="container" style="color: white;"></div>
+        <div class="footer-bottom">
+          © 2024. RZ UP.
+        </div>
+      </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+          $(document).ready(function () {
+            const canvas = document.getElementById('starCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const colors = ['#ff4c4c', '#4cff4c', '#4c4cff', '#ffff4c', '#ff4cff'];
+            const stars = [];
+            for (let i = 0; i < 100; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    radius: Math.random() * 2,
+                    colorIndex: Math.floor(Math.random() * colors.length),
+                    speed: Math.random() * 0.5 + 0.2,
+                });
+            }
+
+            function drawStars() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'black';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                stars.forEach((star) => {
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = colors[star.colorIndex];
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = colors[star.colorIndex];
+                    ctx.fill();
+
+                    star.y -= star.speed;
+                    if (star.y < 0) {
+                        star.y = canvas.height;
+                        star.x = Math.random() * canvas.width;
+                    }
+
+                    if (Math.random() < 0.01) {
+                        star.colorIndex = Math.floor(Math.random() * colors.length);
+                    }
+                });
+
+                requestAnimationFrame(drawStars);
+            }
+
+            drawStars();
+
+            $(window).resize(function () {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        });
+
+
+  $(document).ready(function () {
+
+            const events = [
+{ title: "Coding Camp 2025 Powered BY DBS Foundation", price: "Rp. 100,000", image: "../images/poster/coding.jpeg", descId: "desc-0" },
+{ title:"Mastering Altcoins", price: "Rp. 200,000", image: "../images/poster/altcoins.jpeg", descId: "desc-1" },
+{ title: "Pelatihan Design Grafis", price: "Rp. 300,000", image: "../images/poster/design.jpeg", descId: "desc-2" },
+{ title: "Pelatihan Hukum PTUN", price: "Rp. 400,000", image: "../images/poster/law.jpeg", descId: "desc-3" },
+{ title: "Octobull", price: "Rp. 500,000", image: "../images/poster/octobull.jpeg", descId: "desc-4" },
+{ title: "Seminar & pelatihan Grafic desain and video editing", price: "Rp. 600,000", image: "../images/poster/design 2.jpeg", descId: "desc-5" },
+];
+
+            // Generate cards dynamically
+            events.forEach((event, index) => {
+                $("#eventContainer").append(`
+                    <div class="col">
+                        <div class="card">
+                            <img src="${event.image}" class="card-img-top" alt="${event.title}">
+                            <div class="card-body">
+                                <h5 class="card-title">${event.title}</h5>
+                                <p class="card-text text-danger fw-bold">${event.price}</p>
+                                <button class="btn btn-primary detail-btn" data-index="${index}" data-bs-toggle="modal" data-bs-target="#detailModal">Detail</button>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            });
+
+            // Handle detail button click
+            $(".detail-btn").click(function () {
+                const index = $(this).data("index");
+                const event = events[index];
+                const description = $(`#${event.descId}`).text();
+
+                $("#detailModalLabel").text(event.title);
+                $("#modalImage").attr("src", event.image).attr("alt", event.title);
+                $("#modalDescription").text(description);
+                $("#modalPrice").text(event.price);
+            });
+        });
+
+$(document).ready(function () {
+  const footerData = [
+    {
+      title: "Services",
+      links: [
+        { name: "1on1 Coaching", url: "#" },
+        { name: "Company Review", url: "#" },
+        { name: "Accounts Review", url: "#" },
+        { name: "HR Consulting", url: "#" },
+        { name: "SEO Optimisation", url: "#" },
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        { name: "About", url: "#" },
+        { name: "Meet the Team", url: "#" },
+        { name: "Accounts Review", url: "#" },
+      ],
+    },
+    {
+      title: "Helpful Links",
+      links: [
+        { name: "Contact", url: "#" },
+        { name: "FAQs", url: "#" },
+        { name: "Live Chat", url: "#" },
+      ],
+    },
+    {
+      title: "Legal",
+      links: [
+        { name: "Accessibility", url: "#" },
+        { name: "Returns Policy", url: "#" },
+        { name: "Refund Policy", url: "#" },
+        { name: "Hiring Statistics", url: "#" },
+      ],
+    },
+    {
+      title: "Downloads",
+      links: [
+        { name: "Marketing Calendar", url: "#" },
+        { name: "SEO Infographics", url: "#" },
+      ],
+    },
+  ];
+
+  const row = $('<div class="row"></div>'); // Bootstrap row for footer columns.
+
+  footerData.forEach((section) => {
+    const col = $('<div class="col-md-2 mb-3"></div>'); // Each column uses Bootstrap grid system.
+    col.append(`<h5>${section.title}</h5>`); // Add section title.
+    const ul = $('<ul class="list-unstyled"></ul>'); // Unordered list without styles.
+    section.links.forEach((link) => {
+      ul.append(`<li><a href="${link.url}">${link.name}</a></li>`); // Add links.
+    });
+    col.append(ul); // Append list to column.
+    row.append(col); // Append column to row.
+  });
+
+  $("#footer-container").append(row); // Add row to footer container.
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="../Background/background.js"></script>
+</head>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+  }
+
+  #starCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+  }
+
+  .container {
+    max-width: 1200px;
+  }
+
+  footer {
+    background-color: #2a2b2c;
+    padding: 40px 20px;
+  }
+
+  footer a {
+    text-decoration: none;
+    color: #FFF;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    font-size: 14px;
+    color: #a1cff8;
+    margin-top: 20px;
+  }
+
+  .img-categori {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+
+  table {
+    background-color: #222222;
+  }
+
+  th {
+    background-color: #333333;
+  }
+
+  img.poster {
+    width: 113px;
+    height: 151px;
+    object-fit: cover;
+  }
+
+  #starCanvas {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    table {
+      font-size: 14px;
+    }
+
+    img.poster {
+      width: 80px;
+      height: 100px;
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    footer .row .col-md-2 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+
+  .navbar-toggler {
+    margin-left: auto;
+  }
+</style>
+
+<body>
+  <canvas id="starCanvas"></canvas>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="../images/economic.png" alt="" width="50" height="50" class="me-2">
+        <strong style="color: #355d7b"> Talenta</strong><strong class="text-warning">Hub</strong>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../html/about.html"> About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="../html/h.html">Homepage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="../html/e-sertif.html">E-Certificate</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../html/login.html">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h2 class="mb-4 text-center">List Events</h2>
+    <table class="table table-dark table-hover">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Poster</th>
+          <th>Name Events</th>
+          <th>Date</th>
+          <th>e-Cerificate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><img src="../images/poster/altcoins.jpeg" alt="Poster 1" class="poster img-thumbnail"></td>
+          <td>Mastering Altcoins</td>
+          <td>7 Juny 2024</td>
+          <td><button class="btn btn-primary btn-sm btn-download" data-id="1">Download</button></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><img src="../images/poster/coding.jpeg" alt="Poster 2" class="poster img-thumbnail"></td>
+          <td>coding camp 2025 by DBS</td>
+          <td>22 Januari 2025</td>
+          <td><button class="btn btn-primary btn-sm btn-download" data-id="2">Download</button></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><img src="../images/poster/law.jpeg" alt="Poster 3" class="poster img-thumbnail"></td>
+          <td>Pelatihan Hukum PTUN</td>
+          <td>10 Februari 2025</td>
+          <td><button class="btn btn-primary btn-sm btn-download" data-id="3">Download</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  </br>
+  </br>
+
+  <footer>
+    <div id="footer-container" class="container" style="color: white;"></div>
+    <div class="footer-bottom">
+      © 2024. RZ UP.
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../Background/background.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(".line-animation").css("width", "100%");
+
+      setTimeout(() => {
+        $(".content").fadeIn(1000);
+      }, 1000);
+    });
+
+    $(document).ready(function () {
+      const footerData = [
+        {
+          title: "Services",
+          links: [
+            { name: "1on1 Coaching", url: "#" },
+            { name: "Company Review", url: "#" },
+            { name: "Accounts Review", url: "#" },
+            { name: "HR Consulting", url: "#" },
+            { name: "SEO Optimisation", url: "#" },
+          ],
+        },
+        {
+          title: "Company",
+          links: [
+            { name: "About", url: "#" },
+            { name: "Meet the Team", url: "#" },
+            { name: "Accounts Review", url: "#" },
+          ],
+        },
+        {
+          title: "Helpful Links",
+          links: [
+            { name: "Contact", url: "#" },
+            { name: "FAQs", url: "#" },
+            { name: "Live Chat", url: "#" },
+          ],
+        },
+        {
+          title: "Legal",
+          links: [
+            { name: "Accessibility", url: "#" },
+            { name: "Returns Policy", url: "#" },
+            { name: "Refund Policy", url: "#" },
+            { name: "Hiring Statistics", url: "#" },
+          ],
+        },
+        {
+          title: "Downloads",
+          links: [
+            { name: "Marketing Calendar", url: "#" },
+            { name: "SEO Infographics", url: "#" },
+          ],
+        },
+      ];
+
+      const row = $('<div class="row"></div>');
+      footerData.forEach((section) => {
+        const col = $('<div class="col-md-2 mb-3"></div>');
+        col.append(`<h5>${section.title}</h5>`);
+        const ul = $('<ul class="list-unstyled"></ul>');
+        section.links.forEach((link) => {
+          ul.append(`<li><a href="${link.url}">${link.name}</a></li>`);
+        });
+        col.append(ul);
+        row.append(col);
+      });
+
+      $("#footer-container").append(row);
+    });
+
+    $(document).ready(function () {
+      $('.btn-download').click(function () {
+        let kegiatanId = $(this).data('id');
+        alert('e-Sertifikat untuk kegiatan ID ' + kegiatanId + ' berhasil diunduh!');
+      });
+    });
+
+  </script>
+</body>
+
+</html>
